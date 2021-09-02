@@ -4,15 +4,22 @@ import axios from 'axios';
 import './App.css';
 const settings = require('./settings.json');
 
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+// axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
+axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const App: React.FC = () => {
   React.useEffect(() => {
-    axios.get(settings.url).then(async resp => {
-      const feed = await resp.data;
-      console.log('feed', feed)
-    });
+    axios
+      .get('/api/status', {
+        headers: {
+          'Content-Type': null,
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
+      .then(async resp => {
+        const feed = await resp.data;
+        console.log('feed', feed);
+      });
   }, []);
 
   return (
