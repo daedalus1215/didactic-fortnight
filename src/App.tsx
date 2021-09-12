@@ -30,7 +30,7 @@ const App: React.FC = () => {
         })}
       </ul>
     </div>
-  ); 
+  );
 };
 
 export default App;
