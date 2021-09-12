@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-settings.json
+server/settings.json
 
 server/node_modules/
