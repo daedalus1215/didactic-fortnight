@@ -26,6 +26,7 @@
     "mongoose": "^5.12.7",
     "nodemon": "^2.0.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "xml2js": "^0.4.23"
   }
 }
