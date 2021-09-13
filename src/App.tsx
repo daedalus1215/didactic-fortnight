@@ -1,14 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { IFeed } from './types';
+import RssPage from './pages/rss/RssPage';
+import Home from './pages/Home';
 
 // axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const App: React.FC = () => {
   const [data, setData] = React.useState([]);
-  console.log('data', data)
   React.useEffect(() => {
     axios
       .get('/api/feed-list', {
@@ -23,14 +24,22 @@ const App: React.FC = () => {
   }, [setData]);
 
   return (
-    <div className="App">
-      <ul>
-        {data.map((d:any) => {
-          return <li>{d.name}</li>
-        })}
-      </ul>
-    </div>
-  ); 
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Home data={data} />
+          </Route>
+          {data.map((d: any) => {
+           return <Route
+              path={`/${d.code}`}
+              render={props => <RssPage code={d.code} {...props} />}
+            />;
+          })}
+        </Switch>
+      </div>
+    </Router>
+  );
 };
 
 export default App;
