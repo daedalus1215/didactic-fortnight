@@ -6,23 +6,27 @@ const getFeedsAction = (req, response) => {
     // axios.defaults.headers.common = { "Accept": "application/json"};
     response.header("Content-Type", "application/json");
 
-    const url = rss.filter(r => r.name === req.name).map(r => r.url);
-
+    const code = req.query.code;
+    // console.log('url', code)
+    const url = rss.filter(r => r.code === code).map(r => r.url)[0];
+    console.log('==========================================')
+    console.log('url', url)
     axios.get(url).then((req, res, next) => {
-        console.log('reg');
         xml2js.parseString(req.data, async (err, result) => {
-            const items = await result['rss']['channel'][0].item;
-            const data = items.map(item => {
-                return {
-                    title: item.title[0],
-                    description: item.description,
-                    link: item.link,
-                    author: item.author,
-                    pubDate: item.pubDate
-                }
-            });
-            console.log('data', data);
-            response.jsonp({ items: data });
+            const rss = await result['rss'];
+            if (rss) {
+                const channels = rss['channel'][0]?.item;
+                const data = channels?.map(item => {
+                    return {
+                        title: item.title[0],
+                        description: item.description,
+                        link: item.link,
+                        author: item.author,
+                        pubDate: item.pubDate
+                    }
+                });
+                response.jsonp({ items: data });
+            }
         })
     });
 };
