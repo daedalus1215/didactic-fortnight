@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import styles from '../../App.module.css';
+import styles from './RssPageByCode.module.css';
 
 interface IRssPage {
   code: string;
 }
 
-const RssPage: React.FC<IRssPage> = ({ code }) => {
+const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
   const [data, setData] = React.useState([]);
   console.log('data', data)
   React.useEffect(() => {
@@ -30,11 +30,11 @@ const RssPage: React.FC<IRssPage> = ({ code }) => {
         {data?.map((d: any) => {
           return (
             <li key={d?.link}>
-              <span className={styles.title}>
+              <div className={styles.title}>
                 <a href={d?.link}>{d?.title}</a>
                 {/* <span className={styles.title}>{d?.title}</span> */}
                 <span className={styles.description}>{d?.description}</span>
-              </span>
+              </div>
             </li>
           );
         })}
@@ -43,4 +43,4 @@ const RssPage: React.FC<IRssPage> = ({ code }) => {
   );
 };
 
-export default RssPage;
+export default RssPageByCode;

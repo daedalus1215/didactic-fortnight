@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import RssPage from './pages/rss/RssPageByCode';
+import RssPageByCode from './pages/rss/RssPageByCode';
 import Home from './pages/Home';
 
 // axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
@@ -33,7 +33,7 @@ const App: React.FC = () => {
           {data.map((d: any) => {
            return <Route
               path={`/${d.code}`}
-              render={props => <RssPage code={d.code} {...props} />}
+              render={props => <RssPageByCode code={d.code} {...props} />}
             />;
           })}
         </Switch>
