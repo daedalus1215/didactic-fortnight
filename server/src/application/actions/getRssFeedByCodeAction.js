@@ -7,25 +7,28 @@ const getRssFeedByCodeAction = (req, response) => {
     response.header("Content-Type", "application/json");
 
     const code = req.query.code;
-    console.log('code', code)
+    // console.log('code', code)
     const url = rss.filter(r => r.code === code).map(r => r.url)[0];
-    console.log('==========================================')
-    console.log('url', url)
+    // console.log('==========================================')
+    // console.log('url', url)
     axios.get(url).then(async (req, res, next) => {
         const data = await req.data;
         xml2js.parseString(data, (err, result) => {
             console.log('err', err)
-            const items = result?.rss.channel[0].item;
 
+            const items = result?.rss.channel[0].item;
             const data = items?.map(item => {
+                // console.log('what', { ...item.enclosure[0].$.url })
                 return {
                     title: item.title[0],
                     description: item.description,
                     link: item.link,
                     author: item.author,
-                    pubDate: item.pubDate
+                    pubDate: item.pubDate,
+                    image: item.enclosure[0].$.url
                 }
             });
+            // console.log('items', data)
             response.jsonp({ items: data });
         })
     });
