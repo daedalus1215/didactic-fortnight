@@ -8,7 +8,7 @@ interface IRssPage {
 
 const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
   const [data, setData] = React.useState([]);
-  console.log('data', data)
+  // console.log('data', data);
   React.useEffect(() => {
     axios
       .get(`/api/feeds?code=${code}`, {
@@ -18,23 +18,26 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
         },
       })
       .then(resp => {
-        console.log('response', resp.data)
+        // console.log('response', resp.data);
         setData(resp.data.items);
       });
   }, [code, setData]);
 
   return (
     <>
-      <div>RssPage</div>
-      <ul>
+      <ul className={styles.ul}>
         {data?.map((d: any) => {
           return (
-            <li key={d?.link}>
-              <div className={styles.title}>
-                <a href={d?.link}>{d?.title}</a>
-                {/* <span className={styles.title}>{d?.title}</span> */}
-                <span className={styles.description}>{d?.description}</span>
-              </div>
+            <li key={d?.link} className={styles.li}>
+              <a href={d?.link}>
+                <img src={d.image} className={styles.img} />
+                <div className={styles.text}>
+                  <div className={styles.title}>{d?.title}</div>
+                  {/* <span className={styles.title}>{d?.title}</span> */}
+                  <div className={styles.description}>{d?.description}</div>
+                  <div className={styles.pubDate}>{d.pubDate}</div>
+                </div>
+              </a>
             </li>
           );
         })}
