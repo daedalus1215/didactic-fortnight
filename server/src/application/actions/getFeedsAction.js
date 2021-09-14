@@ -10,23 +10,23 @@ const getFeedsAction = (req, response) => {
     // console.log('url', code)
     const url = rss.filter(r => r.code === code).map(r => r.url)[0];
     console.log('==========================================')
-    console.log('url', url)
-    axios.get(url).then((req, res, next) => {
-        xml2js.parseString(req.data, async (err, result) => {
-            const rss = await result['rss'];
-            if (rss) {
-                const channels = rss['channel'][0]?.item;
-                const data = channels?.map(item => {
-                    return {
-                        title: item.title[0],
-                        description: item.description,
-                        link: item.link,
-                        author: item.author,
-                        pubDate: item.pubDate
-                    }
-                });
-                response.jsonp({ items: data });
-            }
+    // console.log('url', url)
+    axios.get(url).then(async (req, res, next) => {
+        const data = await req.data;
+        xml2js.parseString(data, (err, result) => {
+            console.log('err', err)
+            const items = result?.rss.channel[0].item;
+
+            const data = items?.map(item => {
+                return {
+                    title: item.title[0],
+                    description: item.description,
+                    link: item.link,
+                    author: item.author,
+                    pubDate: item.pubDate
+                }
+            });
+            response.jsonp({ items: data });
         })
     });
 };
