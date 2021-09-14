@@ -2,15 +2,15 @@ const axios = require('axios');
 const xml2js = require('xml2js');
 const rss = require('../../../settings.json');
 
-const getFeedsAction = (req, response) => {
+const getRssFeedByCodeAction = (req, response) => {
     // axios.defaults.headers.common = { "Accept": "application/json"};
     response.header("Content-Type", "application/json");
 
     const code = req.query.code;
-    // console.log('url', code)
+    console.log('code', code)
     const url = rss.filter(r => r.code === code).map(r => r.url)[0];
     console.log('==========================================')
-    // console.log('url', url)
+    console.log('url', url)
     axios.get(url).then(async (req, res, next) => {
         const data = await req.data;
         xml2js.parseString(data, (err, result) => {
@@ -31,4 +31,4 @@ const getFeedsAction = (req, response) => {
     });
 };
 
-module.exports = getFeedsAction;
+module.exports = getRssFeedByCodeAction;
