@@ -1,21 +1,21 @@
 import React from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import styles from './RssPageByCodeRedit.module.css';
 import { IRssPage } from '../../types';
-import styles from './RssPageByCode.module.css';
 
-const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
+const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
   const [data, setData] = React.useState([]);
-
   React.useEffect(() => {
     axios
-      .get(`/api/feeds?code=${code}`, {
+      .get(`/api/redit-feeds?code=${code}`, {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
       })
       .then(resp => {
-        // console.log('response', resp.data);
         setData(resp.data.items);
       });
   }, [code, setData]);
@@ -30,7 +30,12 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
                 <img src={d.image} alt="" className={styles.img} />
                 <div className={styles.text}>
                   <div className={styles.title}>{d?.title}</div>
-                  <div className={styles.description}>{d?.description}</div>
+                  <ReactMarkdown
+                    className={styles.description}
+                    remarkPlugins={[gfm]}
+                  >
+                    {d?.description}
+                  </ReactMarkdown>
                   <div className={styles.pubDate}>{d.pubDate}</div>
                 </div>
               </a>
@@ -42,4 +47,4 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
   );
 };
 
-export default RssPageByCode;
+export default RssPageByCodeRedit;
