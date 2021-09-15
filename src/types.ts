@@ -5,3 +5,15 @@ export interface IFeed {
     description: string|undefined;
     pubDate: string|undefined;
 }
+
+export interface IFeedTemplate {
+    url: string;
+    name: string;
+    id: number;
+    code: string;
+    rssTemplate: string;
+}
+
+export interface IRssPage {
+    code: string;
+}
