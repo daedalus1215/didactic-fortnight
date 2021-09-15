@@ -1,0 +1,22 @@
+ul {
+  margin: 0;
+  padding:0;  
+}
+
+.ul {
+  list-style-type: none;
+}
+
+ a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+ }
+
+li {
+  padding: 10px;
+  margin: 10px;
+  border-bottom: 1px rgba(50,50,50,1);
+  background-color: rgb(200,200,200);
+  border-radius: 4px;
+}
