@@ -4,12 +4,11 @@ import axios from 'axios';
 import './App.css';
 import RssPageByCode from './pages/rss/RssPageByCode';
 import Home from './pages/Home';
-
-// axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8';
-axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+import RssPageByCodeRedit from './pages/rss/RssPageByCodeRedit';
+import { IFeedTemplate } from './types';
 
 const App: React.FC = () => {
-  const [data, setData] = React.useState([]);
+  const [feedOptions, setFeedOptions] = React.useState([]);
   React.useEffect(() => {
     axios
       .get('/api/feed-list', {
@@ -19,22 +18,37 @@ const App: React.FC = () => {
         },
       })
       .then(resp => {
-        setData(resp.data.items);
+        setFeedOptions(resp.data.items);
       });
-  }, [setData]);
+  }, [setFeedOptions]);
 
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Home data={data} />
+            <Home data={feedOptions} />
           </Route>
-          {data.map((d: any) => {
-           return <Route
-              path={`/${d.code}`}
-              render={props => <RssPageByCode code={d.code} {...props} />}
-            />;
+          {feedOptions.map((feedTemplate: IFeedTemplate) => {
+            if (feedTemplate.rssTemplate === 'generic') {
+              return (
+                <Route
+                  path={`/${feedTemplate.code}`}
+                  render={props => <RssPageByCode code={feedTemplate.code} {...props} />}
+                />
+              );
+            } else if (feedTemplate.rssTemplate === 'redit') {
+              return (
+                <Route
+                  path={`/${feedTemplate.code}`}
+                  render={props => (
+                    <RssPageByCodeRedit code={feedTemplate.code} {...props} />
+                  )}
+                />
+              );
+            } else {
+              return [];
+            }
           })}
         </Switch>
       </div>
