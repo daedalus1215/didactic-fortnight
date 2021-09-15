@@ -8,7 +8,6 @@ interface IHome {
 const Home: React.FC<IHome> = ({ data }) => {
   return (
     <>
-      <div>HomePage</div>
       <ul>
         {data?.map((d: any) => {
           return (
