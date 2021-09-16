@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
 import styles from './RssPageByCodeRedit.module.css';
 import { IRssPage } from '../../types';
 
@@ -27,15 +25,16 @@ const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
           return (
             <li key={d?.link} className={styles.li}>
               <a href={d?.link}>
-                <img src={d.image} alt="" className={styles.img} />
+                {d?.image ? (
+                  <img src={d?.image} alt="" className={styles.img} />
+                ) : (
+                  <div className={styles.imgPlaceholder}></div>
+                )}
                 <div className={styles.text}>
                   <div className={styles.title}>{d?.title}</div>
-                  <ReactMarkdown
-                    className={styles.description}
-                    remarkPlugins={[gfm]}
-                  >
-                    {d?.description}
-                  </ReactMarkdown>
+                  <div className={styles.description}>
+                    {d?.description.replace(/(<([^>]+)>)/gi, '')}
+                  </div>
                   <div className={styles.pubDate}>{d.pubDate}</div>
                 </div>
               </a>
