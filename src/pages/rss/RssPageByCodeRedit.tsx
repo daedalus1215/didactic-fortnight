@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import styles from './RssPageByCodeRedit.module.css';
 import { IRssPage } from '../../types';
 
@@ -33,7 +34,9 @@ const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
                 <div className={styles.text}>
                   <div className={styles.title}>{d?.title}</div>
                   <div className={styles.description}>
-                    {new DOMParser().parseFromString(d?.description, 'text/html').body.textContent || ''}
+                    {DOMPurify.sanitize(d?.description, {
+                      ALLOWED_TAGS: ['b'],
+                    })}
                   </div>
                   <div className={styles.pubDate}>{d.pubDate}</div>
                 </div>
