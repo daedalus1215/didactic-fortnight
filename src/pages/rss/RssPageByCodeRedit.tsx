@@ -33,7 +33,7 @@ const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
                 <div className={styles.text}>
                   <div className={styles.title}>{d?.title}</div>
                   <div className={styles.description}>
-                    {d?.description.replace(/(<([^>]+)>)/gi, '')}
+                    {new DOMParser().parseFromString(d?.description, 'text/html').body.textContent || ''}
                   </div>
                   <div className={styles.pubDate}>{d.pubDate}</div>
                 </div>
