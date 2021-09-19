@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import RssPageByCode from './pages/rss/RssPageByCode';
-import Home from './pages/Home';
+import Home from './pages/ListOfRss';
 import RssPageByCodeRedit from './pages/rss/RssPageByCodeRedit';
 import { IFeedTemplate } from './types';
 
@@ -27,14 +27,16 @@ const App: React.FC = () => {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Home data={feedOptions} />
+            <Home feedOptions={feedOptions} />
           </Route>
           {feedOptions.map((feedTemplate: IFeedTemplate) => {
             if (feedTemplate.rssTemplate === 'generic') {
               return (
                 <Route
                   path={`/${feedTemplate.code}`}
-                  render={props => <RssPageByCode code={feedTemplate.code} {...props} />}
+                  render={props => (
+                    <RssPageByCode code={feedTemplate.code} {...props} />
+                  )}
                 />
               );
             } else if (feedTemplate.rssTemplate === 'redit') {
