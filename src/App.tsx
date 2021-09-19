@@ -6,7 +6,7 @@ import RssPageByCode from './pages/rss/RssPageByCode';
 import Home from './pages/listOfRss/ListOfRss';
 import RssPageByCodeRedit from './pages/rss/RssPageByCodeRedit';
 import { IFeedTemplate } from './types';
-import Main from './pages/Main';
+import Main from './pages/main/Main';
 
 const App: React.FC = () => {
   const [feedOptions, setFeedOptions] = React.useState([]);
