@@ -1,0 +1,12 @@
+.feedOptions {
+    height: 100vh;
+    background-color: black;
+}
+
+.isExpanded {
+    flex:9
+}
+
+.notExpanded {
+    flex: 0;
+}
