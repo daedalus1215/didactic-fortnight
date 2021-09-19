@@ -12,12 +12,17 @@ interface IHome {
 }
 
 const ListOfRss: React.FC<IHome> = ({ feedOptions }) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   return (
-    <div className={cn({ 'flex: 9': [isExpanded], 'flex: 0': [!isExpanded] })}>
+    <div
+      className={cn(styles.feedOptions, {
+        [styles.isExpanded]: isExpanded,
+        [styles.notExpanded]: !isExpanded,
+      })}
+    >
       <ul>
-        {feedOptions?.map((d: any) => {
+        {feedOptions?.map((d: RssItem) => {
           return (
             <li key={d.code}>
               <Link to={`/${d.code}`}>{d.name}</Link>
