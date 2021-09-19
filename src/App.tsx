@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import RssPageByCode from './pages/rss/RssPageByCode';
-import Home from './pages/ListOfRss';
+import Home from './pages/listOfRss/ListOfRss';
 import RssPageByCodeRedit from './pages/rss/RssPageByCodeRedit';
 import { IFeedTemplate } from './types';
+import Main from './pages/Main';
 
 const App: React.FC = () => {
   const [feedOptions, setFeedOptions] = React.useState([]);
@@ -26,10 +27,14 @@ const App: React.FC = () => {
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home feedOptions={feedOptions} />
-          </Route>
-          {feedOptions.map((feedTemplate: IFeedTemplate) => {
+          </Route> */}
+          <Route 
+          exact path={['/']}
+          render={props => <Main feedOptions={feedOptions} {...props} />}
+          />
+          {/* {feedOptions.map((feedTemplate: IFeedTemplate) => {
             if (feedTemplate.rssTemplate === 'generic') {
               return (
                 <Route
@@ -51,7 +56,7 @@ const App: React.FC = () => {
             } else {
               return [];
             }
-          })}
+          })} */}
         </Switch>
       </div>
     </Router>
