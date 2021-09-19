@@ -1,15 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+interface RssItem {
+  code: string;
+  name: string; 
+}
 interface IHome {
-  data: Array<any>;
+  feedOptions: Array<RssItem>;
 }
 
-const Home: React.FC<IHome> = ({ data }) => {
+const Home: React.FC<IHome> = ({ feedOptions }) => {
   return (
     <>
       <ul>
-        {data?.map((d: any) => {
+        {feedOptions?.map((d: any) => {
           return (
             <li key={d.code}>
               <Link to={`/${d.code}`}>{d.name}</Link>
