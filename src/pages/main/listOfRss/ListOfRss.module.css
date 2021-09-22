@@ -1,6 +1,5 @@
 .feedOptions {
   height: 100vh;
-  background-color: beige;
 }
 
 .isExpanded {
@@ -34,4 +33,13 @@
   margin: 10px;
   color: rgba(50,50,50,1);
   list-style: none;
+}
+
+span.expandButton {
+  display: flex;
+  margin: 20px;
+}
+
+.none {
+  display: none;
 }

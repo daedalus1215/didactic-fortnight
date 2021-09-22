@@ -21,15 +21,17 @@ const ListOfRss: React.FC<IHome> = ({ feedOptions }) => {
         [styles.notExpanded]: !isExpanded,
       })}
     >
-      <div onClick={() => setIsExpanded(!isExpanded)}>
-        <span
-          className={cn({
-            'glyphicon glyphicon-list-alt': !isExpanded,
-            'glyphicon glyphicon-remove': isExpanded,
-          })}
-        ></span>
-      </div>
-      <ul className={styles.ul}>
+      <span
+        className={cn(styles.expandButton, {
+          'glyphicon glyphicon-list-alt': !isExpanded,
+          'glyphicon glyphicon-remove': isExpanded,
+        })}
+        onClick={() => setIsExpanded(!isExpanded)}
+      />
+
+      <ul className={cn(styles.ul, {
+        [styles.none]: !isExpanded
+      })}>
         {feedOptions?.map((d: RssItem) => {
           return (
             <li className={styles.li} key={d.code}>
