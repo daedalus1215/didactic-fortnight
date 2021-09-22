@@ -24,10 +24,10 @@ require('./src/application/utils/routes')(app);
 async function startServer() {
     app.listen('3009', err => {
         if (err) {
-            console.log(err);
+            err && console.log(err);
             return;
         }
-        console.log(`Your server is ready !`);
+        err && console.log(`Your server is ready !`);
     });
 }
 
