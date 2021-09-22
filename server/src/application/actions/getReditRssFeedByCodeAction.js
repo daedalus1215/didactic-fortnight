@@ -7,27 +7,27 @@ const getReditRssFeedByCodeAction = (req, response) => {
     response.header("Content-Type", "application/json");
 
     const code = req.query.code;
-    console.log('code', code)
+    // console.log('code', code)
     const url = rss.filter(r => r.code === code).map(r => r.url)[0];
     // console.log('==========================================')
-    console.log('url', url)
+    // console.log('url', url)
     axios.get(url).then(async (req, res, next) => {
         const data = await req.data;
         xml2js.parseString(data, (err, result) => {
-            console.log('err', err)
+            err && console.log('err', err)
             // console.log('result', result.feed.entry)
 
             const items = result.feed.entry;
             const data = items?.map(item => {
                 // console.log('item. ', item['media:thumbnail']?.[0]?.$?.url)
-                console.log('what', {
-                    title: item.title[0],
-                    description: item.content[0]._,
-                    link: item.link[0].$.href,
-                    author: item.author?.[0].name[0],
-                    pubDate: item.published[0],
-                    image: item['media:thumbnail']?.[0]?.$?.url
-                })
+                // console.log('what', {
+                //     title: item.title[0],
+                //     description: item.content[0]._,
+                //     link: item.link[0].$.href,
+                //     author: item.author?.[0].name[0],
+                //     pubDate: item.published[0],
+                //     image: item['media:thumbnail']?.[0]?.$?.url
+                // })
                 return {
                     title: item.title[0],
                     description: item.content[0]._,
