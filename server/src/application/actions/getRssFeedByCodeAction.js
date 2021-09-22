@@ -14,7 +14,7 @@ const getRssFeedByCodeAction = (req, response) => {
     axios.get(url).then(async (req, res, next) => {
         const data = await req.data;
         xml2js.parseString(data, (err, result) => {
-            console.log('err', err)
+            err && console.log('err', err);
 
             const items = result?.rss.channel[0].item;
             const data = items?.map(item => {
