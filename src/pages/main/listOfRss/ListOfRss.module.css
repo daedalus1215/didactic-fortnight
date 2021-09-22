@@ -1,0 +1,37 @@
+.feedOptions {
+  height: 100vh;
+  background-color: beige;
+}
+
+.isExpanded {
+  flex:9
+}
+
+.notExpanded {
+  flex: 0;
+}
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding:0;
+}
+
+ a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+ }
+
+.li {
+  padding: 10px;
+  margin: 5px;
+  border-bottom: 1px rgba(50,50,50,1);
+  background-color: rgba(200,200,200);
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px;
+  margin: 10px;
+  color: rgba(50,50,50,1);
+  list-style: none;
+}

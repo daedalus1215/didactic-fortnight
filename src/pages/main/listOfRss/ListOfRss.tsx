@@ -12,7 +12,7 @@ interface IHome {
 }
 
 const ListOfRss: React.FC<IHome> = ({ feedOptions }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(true);
 
   return (
     <div
@@ -21,10 +21,18 @@ const ListOfRss: React.FC<IHome> = ({ feedOptions }) => {
         [styles.notExpanded]: !isExpanded,
       })}
     >
-      <ul>
+      <div onClick={() => setIsExpanded(!isExpanded)}>
+        <span
+          className={cn({
+            'glyphicon glyphicon-list-alt': !isExpanded,
+            'glyphicon glyphicon-remove': isExpanded,
+          })}
+        ></span>
+      </div>
+      <ul className={styles.ul}>
         {feedOptions?.map((d: RssItem) => {
           return (
-            <li key={d.code}>
+            <li className={styles.li} key={d.code}>
               <Link to={`/${d.code}`}>{d.name}</Link>
             </li>
           );
