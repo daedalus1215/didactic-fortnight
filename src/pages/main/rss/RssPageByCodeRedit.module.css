@@ -1,3 +1,8 @@
+.listWrapper {
+  height: 100vh;
+  overflow: scroll;
+}
+
 ul {
   margin: 0;
   padding:0;  

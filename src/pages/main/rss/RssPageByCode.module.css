@@ -1,17 +1,21 @@
+.listWrapper {
+  height: 100vh;
+  overflow: scroll;
+}
+
 ul {
   margin: 0;
   padding:0;
-  flex: 1
 }
 
 .ul {
   list-style-type: none;
 }
 
- a, a:hover, a:focus, a:active {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
  }
 
 .li {
