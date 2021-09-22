@@ -21,6 +21,7 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
   }, [code, setData]);
 
   return (
+    <div className={styles.listWrapper}>
       <ul className={styles.ul}>
         {data?.map((d: any) => {
           return (
@@ -37,6 +38,7 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
           );
         })}
       </ul>
+    </div>
   );
 };
 
