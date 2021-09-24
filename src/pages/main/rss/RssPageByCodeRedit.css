@@ -1,6 +1,16 @@
 .listWrapper {
   height: 100vh;
   overflow: scroll;
+  width: 100%;
+  flex: 9
+}
+
+.listWrapperExpanded {
+  height: 100vh;
+  overflow: scroll;
+  width: 100%;
+  flex: 1;
+  display: flex;
 }
 
 ul {

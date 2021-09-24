@@ -1,11 +1,17 @@
 import React from 'react';
+import cn from 'classnames';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
-import styles from './RssPageByCodeRedit.module.css';
-import { IRssPage } from '../../../types';
+import { IRssPageByCode } from '../../../types';
+import './RssPageByCodeRedit.css';
 
-const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
+//@TODO: Reorganize this and RssPageByCode.
+//@TODO: look to moving the conditional in RssPage and moving it towards determining which list item we show
+//@TODO: Remove RssPage, Remove this, Remove RssPageByCode components. in favor of RssCodeListView
+//@TODO: Then just have RssListItem, Rss
+const RssPageByCodeRedit: React.FC<IRssPageByCode> = ({ code, isExpanded }) => {
   const [data, setData] = React.useState([]);
+  console.log('isExpanded', isExpanded);  
   React.useEffect(() => {
     axios
       .get(`/api/redit-feeds?code=${code}`, {
@@ -20,25 +26,30 @@ const RssPageByCodeRedit: React.FC<IRssPage> = ({ code }) => {
   }, [code, setData]);
 
   return (
-    <div className={styles.listWrapper}>
-      <ul className={styles.ul}>
+    <div
+      className={cn({
+        'listWrapper': !isExpanded,
+        'listWrapperExpanded': isExpanded,
+      })}
+    >
+      <ul className={cn('ul')}>
         {data?.map((d: any) => {
           return (
-            <li key={d?.link} className={styles.li}>
+            <li key={d?.link} className={'li'}>
               <a href={d?.link}>
                 {d?.image ? (
-                  <img src={d?.image} alt="" className={styles.img} />
+                  <img src={d?.image} alt="" className={'img'} />
                 ) : (
-                  <div className={styles.imgPlaceholder}></div>
+                  <div className={'imgPlaceholder'}></div>
                 )}
-                <div className={styles.text}>
-                  <div className={styles.title}>{d?.title}</div>
-                  <div className={styles.description}>
+                <div className={'text'}>
+                  <div className={'title'}>{d?.title}</div>
+                  <div className={'description'}>
                     {DOMPurify.sanitize(d?.description, {
                       ALLOWED_TAGS: ['b'],
                     })}
                   </div>
-                  <div className={styles.pubDate}>{d.pubDate}</div>
+                  <div className={'pubDate'}>{d.pubDate}</div>
                 </div>
               </a>
             </li>

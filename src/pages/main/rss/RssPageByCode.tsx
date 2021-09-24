@@ -1,9 +1,10 @@
 import React from 'react';
+import cn from 'classnames';
 import axios from 'axios';
-import { IRssPage } from '../../../types';
+import { IRssPageByCode } from '../../../types';
 import styles from './RssPageByCode.module.css';
 
-const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
+const RssPageByCode: React.FC<IRssPageByCode> = ({ code, isExpanded }) => {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
@@ -21,7 +22,7 @@ const RssPageByCode: React.FC<IRssPage> = ({ code }) => {
   }, [code, setData]);
 
   return (
-    <div className={styles.listWrapper}>
+    <div className={cn(styles.listWrapper, { 'flex 1': isExpanded })}>
       <ul className={styles.ul}>
         {data?.map((d: any) => {
           return (
