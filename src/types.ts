@@ -14,6 +14,13 @@ export interface IFeedTemplate {
     rssTemplate: string;
 }
 
-export interface IRssPage {
+export interface IRssPageByCode {
     code: string;
+    isExpanded: boolean;
+}
+
+export interface IRssPage {
+    feedOptions: Array<IFeedTemplate>;
+    code: string;
+    isExpanded: boolean;
 }
