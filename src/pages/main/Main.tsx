@@ -11,7 +11,7 @@ interface IMain {
     params: {
       code?: string;
     };
-  };
+  };    
 }
 
 const Main: React.FC<IMain> = ({ feedOptions, match }) => {
@@ -25,6 +25,7 @@ const Main: React.FC<IMain> = ({ feedOptions, match }) => {
         <ListOfRss
           feedOptions={feedOptions}
           isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
         />
         <RssPage
           feedOptions={feedOptions}

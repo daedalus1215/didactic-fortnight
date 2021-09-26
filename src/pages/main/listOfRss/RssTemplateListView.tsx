@@ -10,11 +10,13 @@ interface RssItem {
 interface IHome {
   feedOptions: Array<RssItem>;
   isExpanded: boolean;
+  setIsExpanded: (boolean:boolean) => void;
 }
 
 const ListOfRss: React.FC<IHome> = ({
   feedOptions,
   isExpanded,
+  setIsExpanded,
 }) => {
   return (
     <div
@@ -30,7 +32,11 @@ const ListOfRss: React.FC<IHome> = ({
       >
         {feedOptions?.map((d: RssItem) => {
           return (
-            <li className={styles.li} key={d.code}>
+            <li
+              className={styles.li}
+              key={d.code}
+              onClick={() => setIsExpanded(false)}
+            >
               <Link to={`/${d.code}`}>{d.name}</Link>
             </li>
           );
