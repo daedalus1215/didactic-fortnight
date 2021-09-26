@@ -3,6 +3,8 @@
     display: flex;
     background-color: grey;
     height: 65px;
+    position: sticky;
+    top: 0;
 }
 
 .expandButton {
