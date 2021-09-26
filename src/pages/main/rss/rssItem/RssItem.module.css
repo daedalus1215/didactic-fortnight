@@ -11,6 +11,7 @@ a, a:hover, a:focus, a:active {
   border-bottom: 1px rgba(50,50,50,1);
   background-color: rgba(200,200,200);
   border-radius: 4px;
+  overflow-x: hidden;
 }
 
 .img {
