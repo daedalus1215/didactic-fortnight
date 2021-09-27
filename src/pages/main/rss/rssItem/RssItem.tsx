@@ -3,10 +3,10 @@ import { IRssItem } from '../../../../types';
 import styles from './RssItem.module.css';
 
 const RssItem: React.FC<IRssItem> = ({ rss }) => {
-  const { image, title, description, pubDate } = rss;
+  const { image, title, description, pubDate, link } = rss;
   return (
     <li key={styles.link} className={styles.li}>
-      <a href={styles.link}>
+      <a href={link}>
         <img src={image} alt="" className={styles.img} />
         <div className={styles.text}>
           <div className={styles.title}>{title}</div>
