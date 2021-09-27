@@ -1,7 +1,7 @@
 .listWrapper {
-  overflow: scroll;
-  flex: 9;
-  height: 90vh;
+    overflow: scroll;
+    flex: 9 1;
+    height: 100%;
 }
 
 .listWrapperExpanded {
