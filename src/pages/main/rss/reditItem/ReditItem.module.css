@@ -5,8 +5,9 @@
       display: flex;
  }
 
-li {
-  padding: 10px;
+.li {
+  height: 100px;
+  padding: 10px;  
   margin: 10px;
   border-bottom: 1px rgba(50,50,50,1);
   background-color: rgb(200,200,200);
@@ -15,15 +16,15 @@ li {
 }
 
 .img {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 4px;
 }
 
 .imgPlaceholder {
   /* flex: 1; */
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 4px;
   background-color: rgb(50,50,50);
 }
