@@ -5,6 +5,17 @@
 }
 
 .listWrapperExpanded {
+  flex: 1;
+  /* this makes it so the 2 panels can be scrolled seperately */
+  height: 100vh;
+}
+
+.listWrapperNotExpanded {
+  /* this makes it so the this panelcan scroll under navbar */
+  height: 100%;
+}
+
+.listWrapperExpanded {
   height: 100vh;
   overflow: scroll;
   flex: 1;

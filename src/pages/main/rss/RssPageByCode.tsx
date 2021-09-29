@@ -43,17 +43,18 @@ const RssPageByCode: React.FC<IRssPageByCode> = ({
     }
   }, [code, rssTemplate, setData]);
 
-  console.log('code', rssTemplate);
-  console.log('data', data);
   return (
-    <div className={cn(styles.listWrapper, { 'flex 1': isExpanded })}>
+    <div
+      className={cn(styles.listWrapper, {
+        [styles.listWrapperExpanded]: isExpanded,
+        [styles.listWrapperNotExpanded]: !isExpanded,
+      })}
+    >
       <ul className={styles.ul}>
         {data?.map((rss: any) => {
           if (rssTemplate === 'generic') {
-            console.log('yes', rss);
             return <RssItem rss={rss} key={rss.link} />;
           } else if (rssTemplate === 'redit') {
-            console.log('rssTemplte', 'ReditItem');
             return <ReditItem rss={rss} key={rss.link} />;
           } else {
             return [];
