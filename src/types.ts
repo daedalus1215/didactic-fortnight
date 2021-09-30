@@ -15,9 +15,8 @@ export interface IFeedTemplate {
 };
 
 export interface IRssPageByCode {
-    code: string;
+    feedTemplate: IFeedTemplate;
     isExpanded: boolean;
-    feedOptions: Array<IFeedTemplate>;
 };
 
 export interface IRssPage {

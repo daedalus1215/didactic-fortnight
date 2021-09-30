@@ -1,7 +1,6 @@
 import React from 'react';
 import { IFeedTemplate, IRssPage } from '../../../types';
 import RssPageByCode from '../rss/RssPageByCode';
-import styles from './RssPage.module.css';
 
 const RssPage: React.FC<IRssPage> = ({ feedOptions, code, isExpanded }) => {
   return (
@@ -11,10 +10,9 @@ const RssPage: React.FC<IRssPage> = ({ feedOptions, code, isExpanded }) => {
         .map((feedTemplate: IFeedTemplate) => {
           return (
             <RssPageByCode
-              code={feedTemplate.code}
+              feedTemplate={feedTemplate}
               key={feedTemplate.id}
               isExpanded={isExpanded}
-              feedOptions={feedOptions}
             />
           );
         })}

@@ -1,5 +1,5 @@
 .nav {
-width: 100%;
+    width: 100%;
     display: flex;
     background-color: rgba(100,100,100,.75);
     height: 65px;
@@ -11,4 +11,12 @@ width: 100%;
     color: white;
     margin: 20px 0 0 20px;
     font-size: 24px;
+}
+
+.code {
+    color: white;
+    font-weight: 500;
+    color: white;
+    margin: 15px;
+    font-size: 24px; 
 }

@@ -20,7 +20,11 @@ const Main: React.FC<IMain> = ({ feedOptions, match }) => {
 
   return (
     <div className={styles.main}>
-      <Navbar isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
+      <Navbar
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+        code={code}
+      />
       <div className={styles.body}>
         <ListOfRss
           feedOptions={feedOptions}
